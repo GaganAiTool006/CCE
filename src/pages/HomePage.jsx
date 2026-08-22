@@ -5,10 +5,10 @@ import { products } from '../data/products';
 
 const HomePage = () => {
   // Slider 1: Hero Banner Slider State
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(5 * 3600 + 24 * 60 + 19);
+  const [heroSlide, setHeroSlide] = useState(0);
+  const [countdown, setCountdown] = useState({ hours: 14, mins: 28, secs: 45 });
 
-  // Scroll Container Refs for Slider 2 & 3
+  // Scroll Container Refs for Sliders
   const categoryScrollRef = useRef(null);
   const flashProductsScrollRef = useRef(null);
   const gymProductsScrollRef = useRef(null);
@@ -16,139 +16,145 @@ const HomePage = () => {
 
   const heroSlides = [
     {
-      tag: "⚡ Next-Gen Electronics & Flagships",
-      title: "Elevate Your Lifestyle With Premium Innovations",
-      subtitle: "Discover authentic smartphones, ANC headphones, 4K OLED monitors, and smartwatches with 1-click Buy Now.",
-      ctaPrimary: "Explore Full Catalog",
+      title: "Apple Watch Ultra 2 & Pro Headphones",
+      subtitle: "Titanium GPS case, 100m water resistance, and active noise canceling.",
+      tag: "⚡ NEW TECH ARRIVAL",
+      image: "https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&w=1200&q=80",
+      ctaPrimary: "Explore Tech Flagships",
       ctaSecondary: "Flash Deals",
-      bgImage: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80",
-      categoryLink: "/shop"
+      link: "/shop"
     },
     {
-      tag: "🔥 Cyberwear & Premium Apparel",
-      title: "Redefine Streetwear With Cyberpunk Fashion",
-      subtitle: "Unmatched style with waterproof bomber jackets, ZoomX running sneakers, leather handbags, and silk dresses.",
+      title: "Cyberwear Sneakers & Streetwear",
+      subtitle: "Reflective futuristic sneakers and high-density streetwear collection.",
+      tag: "🔥 TRENDING CYBERWEAR",
+      image: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1200&q=80",
       ctaPrimary: "Shop Cyberwear",
       ctaSecondary: "Fashion Deals",
-      bgImage: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1200&q=80",
-      categoryLink: "/shop"
+      link: "/shop"
     },
     {
-      tag: "💪 Heavy Duty Gym & Fitness Gear",
-      title: "Build Your Dream Gym Setup At Home",
-      subtitle: "Commercial grade adjustable dumbbells, workout benches, speed resistance bands, and pure whey protein isolate.",
-      ctaPrimary: "Explore Gym Gear",
+      title: "Commercial Adjustable Dumbbells",
+      subtitle: "5lbs to 52.5lbs quick adjust cast iron gym weights for home workout spaces.",
+      tag: "💪 FITNESS SPOTLIGHT",
+      image: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?auto=format&fit=crop&w=1200&q=80",
+      ctaPrimary: "Upgrade Home Gym",
       ctaSecondary: "Fitness Deals",
-      bgImage: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=1200&q=80",
-      categoryLink: "/shop"
+      link: "/shop"
     }
   ];
 
-  // Auto Slider Timer
+  // Auto Hero Slider Timer
   useEffect(() => {
-    const slideTimer = setInterval(() => {
-      setCurrentSlide(prev => (prev + 1) % heroSlides.length);
+    const timer = setInterval(() => {
+      setHeroSlide(prev => (prev + 1) % heroSlides.length);
     }, 6000);
-
-    const countdownTimer = setInterval(() => {
-      setTimeLeft(prev => (prev > 0 ? prev - 1 : 0));
-    }, 1000);
-
-    return () => {
-      clearInterval(slideTimer);
-      clearInterval(countdownTimer);
-    };
+    return () => clearInterval(timer);
   }, [heroSlides.length]);
 
-  const hours = String(Math.floor(timeLeft / 3600)).padStart(2, '0');
-  const minutes = String(Math.floor((timeLeft % 3600) / 60)).padStart(2, '0');
-  const seconds = String(timeLeft % 60).padStart(2, '0');
+  // Flash Countdown Clock Timer
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCountdown(prev => {
+        if (prev.secs > 0) return { ...prev, secs: prev.secs - 1 };
+        if (prev.mins > 0) return { ...prev, mins: 59, secs: 59 };
+        if (prev.hours > 0) return { hours: prev.hours - 1, mins: 59, secs: 59 };
+        return { hours: 23, mins: 59, secs: 59 };
+      });
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
-  // Scroll strictly via buttons (scrollbars hidden via CSS)
   const scrollContainer = (ref, direction) => {
     if (ref.current) {
-      const scrollAmount = direction === 'left' ? -320 : 320;
+      const scrollAmount = direction === 'left' ? -300 : 300;
       ref.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     }
   };
 
-  const flashProducts = products.filter(p => p.badgeType === 'hot');
-  const techProducts = products.filter(p => p.category === 'electronics');
-  const gymProducts = products.filter(p => p.category === 'gym');
+  const flashProducts = products.filter(p => p.badge === 'HOT' || p.badge === 'SALE' || p.badgeType === 'hot');
+  const techProducts = products.filter(p => p.category === 'tech' || p.category === 'electronics').slice(0, 6);
+  const gymProducts = products.filter(p => p.category === 'gym').slice(0, 6);
 
   return (
-    <div className="home-page">
-
-      {/* --- SLIDER 1: Hero Banner Carousel with High-Contrast Text --- */}
-      <section className="hero-slider-section">
-        <div className="container hero-slider-container">
-          <div className="hero-slider-card">
-            
-            {/* Background Image & High Contrast Gradient Overlay */}
-            <div className="hero-slide-bg-wrapper">
-              <img
-                src={heroSlides[currentSlide].bgImage}
-                alt={heroSlides[currentSlide].title}
-                className="hero-slide-bg-img"
-              />
+    <div className="homepage-root">
+      
+      {/* --- SLIDER 1: Hero Carousel Banner Slider --- */}
+      <section className="container hero-slider-section">
+        <div className="hero-slider-card">
+          {heroSlides.map((slide, index) => (
+            <div 
+              key={index} 
+              className={`hero-slide-bg-wrapper ${heroSlide === index ? 'active-slide' : 'hidden-slide'}`}
+              style={{ display: heroSlide === index ? 'block' : 'none' }}
+            >
+              <img src={slide.image} alt={slide.title} className="hero-slide-bg-img" />
               <div className="hero-slide-overlay"></div>
-            </div>
+              
+              <div className="hero-slide-content">
+                <span className="hero-tag"><i className="ri-fire-fill"></i> {slide.tag}</span>
+                <h1 className="hero-title">{slide.title}</h1>
+                <p className="hero-subtitle">{slide.subtitle}</p>
 
-            {/* Slide Content with High Contrast Text Shadows */}
-            <div className="hero-slide-content">
-              <span className="hero-tag">
-                <i className="ri-sparkles-fill"></i> {heroSlides[currentSlide].tag}
-              </span>
-              <h1 className="hero-title">{heroSlides[currentSlide].title}</h1>
-              <p className="hero-subtitle">{heroSlides[currentSlide].subtitle}</p>
+                <div className="hero-actions">
+                  <Link to={slide.link} className="btn btn-primary btn-lg">
+                    {slide.ctaPrimary} <i className="ri-arrow-right-line"></i>
+                  </Link>
+                  <Link to="/shop" className="btn btn-glass btn-lg">
+                    <i className="ri-fire-fill fire-icon"></i> {slide.ctaSecondary}
+                  </Link>
+                </div>
 
-              <div className="hero-actions">
-                <Link to={heroSlides[currentSlide].categoryLink} className="btn btn-primary btn-lg">
-                  {heroSlides[currentSlide].ctaPrimary} <i className="ri-arrow-right-line"></i>
-                </Link>
-                <Link to="/shop" className="btn btn-glass btn-lg">
-                  <i className="ri-fire-fill fire-icon"></i> {heroSlides[currentSlide].ctaSecondary}
-                </Link>
+                {/* High-Tech Glowing Flash Countdown Clock */}
+                <div className="flash-countdown">
+                  <span className="countdown-label">FLASH SALE ENDS IN:</span>
+                  <div className="timer-boxes-row">
+                    <div className="timer-box">
+                      <span>{String(countdown.hours).padStart(2, '0')}</span>
+                      <small>HRS</small>
+                    </div>
+                    <span className="colon">:</span>
+                    <div className="timer-box">
+                      <span>{String(countdown.mins).padStart(2, '0')}</span>
+                      <small>MIN</small>
+                    </div>
+                    <span className="colon">:</span>
+                    <div className="timer-box">
+                      <span>{String(countdown.secs).padStart(2, '0')}</span>
+                      <small>SEC</small>
+                    </div>
+                  </div>
+                </div>
+
               </div>
-
-              {/* Countdown Timer */}
-              <div className="flash-countdown">
-                <span className="countdown-label">Flash Sale Ends In:</span>
-                <div className="timer-box"><span>{hours}</span><small>HRS</small></div>
-                <span className="colon">:</span>
-                <div className="timer-box"><span>{minutes}</span><small>MIN</small></div>
-                <span className="colon">:</span>
-                <div className="timer-box"><span>{seconds}</span><small>SEC</small></div>
-              </div>
             </div>
+          ))}
 
-            {/* Hero Navigation Arrow Buttons */}
-            <button
-              className="hero-slider-arrow prev-arrow"
-              onClick={() => setCurrentSlide(prev => (prev === 0 ? heroSlides.length - 1 : prev - 1))}
-              aria-label="Previous Slide"
-            >
-              <i className="ri-arrow-left-s-line"></i>
-            </button>
-            <button
-              className="hero-slider-arrow next-arrow"
-              onClick={() => setCurrentSlide(prev => (prev + 1) % heroSlides.length)}
-              aria-label="Next Slide"
-            >
-              <i className="ri-arrow-right-s-line"></i>
-            </button>
+          {/* Slider Arrow Controls */}
+          <button 
+            className="hero-slider-arrow prev-arrow" 
+            onClick={() => setHeroSlide(prev => (prev === 0 ? heroSlides.length - 1 : prev - 1))}
+            title="Previous Slide"
+          >
+            <i className="ri-arrow-left-s-line"></i>
+          </button>
+          <button 
+            className="hero-slider-arrow next-arrow" 
+            onClick={() => setHeroSlide(prev => (prev + 1) % heroSlides.length)}
+            title="Next Slide"
+          >
+            <i className="ri-arrow-right-s-line"></i>
+          </button>
 
-            {/* Pagination Dots */}
-            <div className="hero-slider-dots">
-              {heroSlides.map((_, idx) => (
-                <button
-                  key={idx}
-                  className={`slider-dot ${idx === currentSlide ? 'active' : ''}`}
-                  onClick={() => setCurrentSlide(idx)}
-                ></button>
-              ))}
-            </div>
-
+          {/* Slider Pagination Dots */}
+          <div className="hero-slider-dots">
+            {heroSlides.map((_, idx) => (
+              <button 
+                key={idx} 
+                className={`slider-dot ${heroSlide === idx ? 'active' : ''}`}
+                onClick={() => setHeroSlide(idx)}
+              ></button>
+            ))}
           </div>
         </div>
       </section>
@@ -159,40 +165,40 @@ const HomePage = () => {
           <div className="trust-card">
             <i className="ri-truck-line trust-icon"></i>
             <div>
-              <h4>Free Global Shipping</h4>
-              <p>On all orders over $50</p>
+              <h4>Free Express Delivery</h4>
+              <p>Free shipping on orders over $50</p>
             </div>
           </div>
           <div className="trust-card">
             <i className="ri-shield-check-line trust-icon"></i>
             <div>
-              <h4>30-Day Guarantee</h4>
-              <p>100% full money-back refund</p>
+              <h4>2-Year Official Warranty</h4>
+              <p>100% authentic brand items</p>
             </div>
           </div>
           <div className="trust-card">
-            <i className="ri-lock-2-line trust-icon"></i>
+            <i className="ri-refresh-line trust-icon"></i>
             <div>
-              <h4>100% Secure Payment</h4>
-              <p>Cards, GPay, Apple Pay & UPI</p>
+              <h4>30-Day Easy Returns</h4>
+              <p>No questions asked refund</p>
             </div>
           </div>
           <div className="trust-card">
-            <i className="ri-headphone-line trust-icon"></i>
+            <i className="ri-customer-service-2-line trust-icon"></i>
             <div>
-              <h4>24/7 VIP Support</h4>
-              <p>Dedicated customer service</p>
+              <h4>24/7 Priority Support</h4>
+              <p>Live chat & instant assistance</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* --- SLIDER 2: Button-Only Scrollable Category Cards (Hidden Scrollbar) --- */}
+      {/* --- SLIDER 2: Horizontal Category Cards Slider --- */}
       <section className="container category-slider-section">
         <div className="section-header flex-between">
           <div>
-            <h2>Explore Departments</h2>
-            <p>Use arrow buttons to scroll through all 8 departments.</p>
+            <h2>Explore Store Departments</h2>
+            <p>Browse authentic items across 8 specialized categories.</p>
           </div>
           <div className="slider-nav-btns">
             <button onClick={() => scrollContainer(categoryScrollRef, 'left')} title="Scroll Left">
@@ -248,8 +254,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* --- SLIDER 3: Horizontal Products Items Carousel (Flash Deals) --- */}
-      <section className="container products-slider-section" style={{ marginTop: '50px' }}>
+      {/* --- SLIDER 3: Horizontal Products Carousel (Flash Deals) --- */}
+      <section className="container products-slider-section">
         <div className="section-header flex-between">
           <div>
             <h2>🔥 Trending Flash Deals</h2>
@@ -275,7 +281,7 @@ const HomePage = () => {
       </section>
 
       {/* --- Departmental Promotional Banners (2-Column) --- */}
-      <section className="container promo-banners-section" style={{ marginTop: '50px' }}>
+      <section className="container promo-banners-section">
         <div className="promo-banners-grid">
           <div className="promo-banner-card promo-gym">
             <span className="promo-tag">FITNESS SPOTLIGHT</span>
@@ -294,7 +300,7 @@ const HomePage = () => {
 
       {/* --- Electronics & Tech Slider --- */}
       {techProducts.length > 0 && (
-        <section className="container products-slider-section" style={{ marginTop: '50px' }}>
+        <section className="container products-slider-section">
           <div className="section-header flex-between">
             <div>
               <h2>⚡ Electronics & Tech Flagships</h2>
@@ -322,7 +328,7 @@ const HomePage = () => {
 
       {/* --- Gym & Fitness Products Slider --- */}
       {gymProducts.length > 0 && (
-        <section className="container products-slider-section" style={{ marginTop: '50px' }}>
+        <section className="container products-slider-section">
           <div className="section-header flex-between">
             <div>
               <h2>💪 Gym & Fitness Essentials</h2>
@@ -349,7 +355,7 @@ const HomePage = () => {
       )}
 
       {/* --- Full All Products Grid Showcase --- */}
-      <section className="container home-products-section" style={{ marginTop: '50px' }}>
+      <section className="container home-products-section">
         <div className="section-header flex-between">
           <div>
             <h2>Explore Full Products Grid</h2>
@@ -368,7 +374,7 @@ const HomePage = () => {
       </section>
 
       {/* --- Authorized Brand Partners Strip --- */}
-      <section className="container brand-partners-section" style={{ margin: '50px auto' }}>
+      <section className="container brand-partners-section">
         <div className="brand-partners-card">
           <span className="brand-strip-title">AUTHORIZED OFFICIAL BRAND PARTNERS</span>
           <div className="brand-logos-row">
@@ -384,8 +390,8 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* --- Upgraded Customer Reviews & Testimonials Section --- */}
-      <section className="container testimonials-section" style={{ margin: '30px auto 40px' }}>
+      {/* --- Customer Reviews & Testimonials Section --- */}
+      <section className="container testimonials-section">
         <div className="section-header text-center">
           <span className="testimonials-header-badge">
             <i className="ri-chat-smile-2-fill"></i> VERIFIED COMMUNITY REVIEWS
