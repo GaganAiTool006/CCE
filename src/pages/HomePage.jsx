@@ -13,7 +13,6 @@ const HomePage = () => {
   const flashProductsScrollRef = useRef(null);
   const gymProductsScrollRef = useRef(null);
   const techProductsScrollRef = useRef(null);
-  const foodProductsScrollRef = useRef(null);
 
   const heroSlides = [
     {
@@ -76,8 +75,6 @@ const HomePage = () => {
   const flashProducts = products.filter(p => p.badgeType === 'hot');
   const techProducts = products.filter(p => p.category === 'electronics');
   const gymProducts = products.filter(p => p.category === 'gym');
-  const foodProducts = products.filter(p => p.category === 'food');
-  const fashionProducts = products.filter(p => p.category === 'men' || p.category === 'women');
 
   return (
     <div className="home-page">
@@ -387,38 +384,96 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* --- Customer Reviews Section --- */}
-      <section className="container testimonials-section" style={{ marginBottom: '60px' }}>
+      {/* --- Upgraded Customer Reviews & Testimonials Section --- */}
+      <section className="container testimonials-section" style={{ margin: '30px auto 40px' }}>
         <div className="section-header text-center">
-          <h2>What Our Global Community Says</h2>
-          <p>Over 50,000 verified buyers trust NovaStore worldwide.</p>
+          <span className="testimonials-header-badge">
+            <i className="ri-chat-smile-2-fill"></i> VERIFIED COMMUNITY REVIEWS
+          </span>
+          <h2>What Our 50,000+ Global Buyers Say</h2>
+          <p>Real experiences from verified shoppers across tech, fashion, gym, and nutrition.</p>
         </div>
 
         <div className="testimonials-grid">
+          
           <div className="testimonial-card">
-            <div className="stars"><i className="ri-star-fill"></i><i className="ri-star-fill"></i><i className="ri-star-fill"></i><i className="ri-star-fill"></i><i className="ri-star-fill"></i></div>
-            <p>"Super fast delivery! Bought the Apple Watch Ultra 2 and ProForm Dumbbells. Both came perfectly packaged in 2 days."</p>
-            <div className="user-info">
-              <strong>Marcus Vance</strong>
-              <small>Verified Buyer</small>
+            <i className="ri-double-quotes-l testimonial-quote-icon"></i>
+            <div className="stars">
+              <i className="ri-star-fill"></i>
+              <i className="ri-star-fill"></i>
+              <i className="ri-star-fill"></i>
+              <i className="ri-star-fill"></i>
+              <i className="ri-star-fill"></i>
+            </div>
+            <p className="testimonial-quote">
+              "Super fast delivery! Bought the Apple Watch Ultra 2 and ProForm Cast Iron Dumbbells. Both arrived perfectly packaged within 48 hours."
+            </p>
+            <div className="testimonial-user">
+              <img 
+                src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" 
+                alt="Marcus Vance" 
+                className="testimonial-avatar" 
+              />
+              <div className="user-details">
+                <strong>Marcus Vance</strong>
+                <span className="verified-badge"><i className="ri-checkbox-circle-fill"></i> Verified Buyer</span>
+                <span className="purchased-tag">Purchased: Apple Watch & Dumbbells</span>
+              </div>
             </div>
           </div>
+
           <div className="testimonial-card">
-            <div className="stars"><i className="ri-star-fill"></i><i className="ri-star-fill"></i><i className="ri-star-fill"></i><i className="ri-star-fill"></i><i className="ri-star-fill"></i></div>
-            <p>"The 1-click Buy Now feature is super convenient. User profile page tracks all my orders live with order IDs!"</p>
-            <div className="user-info">
-              <strong>Priya Sharma</strong>
-              <small>Verified Buyer</small>
+            <i className="ri-double-quotes-l testimonial-quote-icon"></i>
+            <div className="stars">
+              <i className="ri-star-fill"></i>
+              <i className="ri-star-fill"></i>
+              <i className="ri-star-fill"></i>
+              <i className="ri-star-fill"></i>
+              <i className="ri-star-fill"></i>
+            </div>
+            <p className="testimonial-quote">
+              "The 1-click Buy Now checkout feature is super convenient. My user profile page tracks all my order IDs with live delivery status!"
+            </p>
+            <div className="testimonial-user">
+              <img 
+                src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=120&q=80" 
+                alt="Priya Sharma" 
+                className="testimonial-avatar" 
+              />
+              <div className="user-details">
+                <strong>Priya Sharma</strong>
+                <span className="verified-badge"><i className="ri-checkbox-circle-fill"></i> Verified Buyer</span>
+                <span className="purchased-tag">Purchased: Wireless Headphones</span>
+              </div>
             </div>
           </div>
+
           <div className="testimonial-card">
-            <div className="stars"><i className="ri-star-fill"></i><i className="ri-star-fill"></i><i className="ri-star-fill"></i><i className="ri-star-fill"></i><i className="ri-star-fill"></i></div>
-            <p>"Awesome variety — got protein whey powder, kids robotics kit, and a smart blood pressure monitor for my parents in one cart!"</p>
-            <div className="user-info">
-              <strong>David Miller</strong>
-              <small>Verified Buyer</small>
+            <i className="ri-double-quotes-l testimonial-quote-icon"></i>
+            <div className="stars">
+              <i className="ri-star-fill"></i>
+              <i className="ri-star-fill"></i>
+              <i className="ri-star-fill"></i>
+              <i className="ri-star-fill"></i>
+              <i className="ri-star-fill"></i>
+            </div>
+            <p className="testimonial-quote">
+              "Awesome variety — ordered 100% Whey Isolate protein powder, a kids STEM robotics kit, and a smart blood pressure monitor in one smooth cart!"
+            </p>
+            <div className="testimonial-user">
+              <img 
+                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" 
+                alt="David Miller" 
+                className="testimonial-avatar" 
+              />
+              <div className="user-details">
+                <strong>David Miller</strong>
+                <span className="verified-badge"><i className="ri-checkbox-circle-fill"></i> Verified Buyer</span>
+                <span className="purchased-tag">Purchased: Organic Whey & Tech Kit</span>
+              </div>
             </div>
           </div>
+
         </div>
       </section>
 
