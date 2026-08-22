@@ -214,42 +214,42 @@ const HomePage = () => {
           <Link to="/shop" className="slider-category-card">
             <i className="ri-cpu-line"></i>
             <h3>Electronics & Tech</h3>
-            <span>6 Products &rarr;</span>
+            <span>6 Products <i className="ri-arrow-right-line"></i></span>
           </Link>
           <Link to="/shop" className="slider-category-card">
             <i className="ri-t-shirt-line"></i>
             <h3>Men's Apparel</h3>
-            <span>3 Products &rarr;</span>
+            <span>3 Products <i className="ri-arrow-right-line"></i></span>
           </Link>
           <Link to="/shop" className="slider-category-card">
             <i className="ri-handbag-line"></i>
             <h3>Women's Apparel</h3>
-            <span>3 Products &rarr;</span>
+            <span>3 Products <i className="ri-arrow-right-line"></i></span>
           </Link>
           <Link to="/shop" className="slider-category-card">
             <i className="ri-dribbble-line"></i>
             <h3>Gym & Fitness</h3>
-            <span>3 Products &rarr;</span>
+            <span>3 Products <i className="ri-arrow-right-line"></i></span>
           </Link>
           <Link to="/shop" className="slider-category-card">
             <i className="ri-goblet-line"></i>
             <h3>Food & Drinks</h3>
-            <span>3 Products &rarr;</span>
+            <span>3 Products <i className="ri-arrow-right-line"></i></span>
           </Link>
           <Link to="/shop" className="slider-category-card">
             <i className="ri-robot-line"></i>
             <h3>Kids & Toys</h3>
-            <span>2 Products &rarr;</span>
+            <span>2 Products <i className="ri-arrow-right-line"></i></span>
           </Link>
           <Link to="/shop" className="slider-category-card">
             <i className="ri-heart-pulse-line"></i>
             <h3>Senior Health</h3>
-            <span>2 Products &rarr;</span>
+            <span>2 Products <i className="ri-arrow-right-line"></i></span>
           </Link>
           <Link to="/shop" className="slider-category-card">
             <i className="ri-home-4-line"></i>
             <h3>Smart Home</h3>
-            <span>2 Products &rarr;</span>
+            <span>2 Products <i className="ri-arrow-right-line"></i></span>
           </Link>
         </div>
       </section>

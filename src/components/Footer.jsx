@@ -60,7 +60,7 @@ const Footer = () => {
 
       <div className="footer-bottom">
         <div className="container footer-bottom-flex">
-          <p>&copy; 2026 NovaStore Inc. All rights reserved. Built with React & Vanilla CSS.</p>
+          <p>© 2026 NovaStore Inc. All rights reserved. Built with React & Vanilla CSS.</p>
           <div className="payment-badges">
             <i className="ri-visa-fill"></i>
             <i className="ri-mastercard-fill"></i>
