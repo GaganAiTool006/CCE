@@ -18,7 +18,7 @@ const Navbar = ({ onSearch }) => {
   return (
     <>
       <header className="navbar">
-        {/* Tier 1: Main Header Row (Logo | Search Trigger | Quick Action Utilities) */}
+        {/* Tier 1: Main Header Row */}
         <div className="navbar-top-tier">
           <div className="container navbar-flex-row">
             
@@ -50,15 +50,23 @@ const Navbar = ({ onSearch }) => {
               <span className="logo-text">Nova<span className="highlight">Store</span></span>
             </Link>
 
-            {/* Central Search Trigger Box */}
+            {/* Central Search Trigger Box (Desktop) */}
             <div className="search-box-trigger" onClick={() => setSearchModalOpen(true)}>
               <i className="ri-search-line search-icon"></i>
               <span className="search-placeholder">Search tech, fashion, gym, food...</span>
               <span className="search-shortcut-badge">⌘K</span>
             </div>
 
-            {/* Main Action Utilities */}
-            <div className="nav-top-utilities">
+            {/* Mobile Search Icon Button (Mobile Top Bar) */}
+            <button className="mobile-top-search-btn" onClick={() => setSearchModalOpen(true)} title="Search Products">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </button>
+
+            {/* Desktop Action Utilities (Hidden on Mobile) */}
+            <div className="nav-top-utilities desktop-only-utilities">
               
               {/* 50% OFF VIP Deal Button */}
               <button className="util-btn offer-nav-btn" onClick={() => setOfferModalOpen(true)} title="Claim VIP 50% OFF Deal">
@@ -111,14 +119,20 @@ const Navbar = ({ onSearch }) => {
               </Link>
 
             </div>
+
+            {/* Mobile Top Cart Link */}
+            <Link to="/cart" className="mobile-top-cart-btn" title="Shopping Cart">
+              <i className="ri-shopping-bag-3-fill"></i>
+              <span className="badge-count">{cartCount}</span>
+            </Link>
+
           </div>
         </div>
 
-        {/* Tier 2: Sub-Header Navigation Row (Lower Category Links & Language/Currency Controls) */}
+        {/* Tier 2: Sub-Header Navigation Row (Desktop Only) */}
         <div className="navbar-bottom-tier">
           <div className="container navbar-sub-row">
             
-            {/* Nav Links directly under Logo */}
             <nav className="nav-sub-menu">
               <NavLink to="/" className={({ isActive }) => isActive ? "sub-nav-link active" : "sub-nav-link"}>
                 <i className="ri-home-4-line"></i> Home
@@ -137,7 +151,6 @@ const Navbar = ({ onSearch }) => {
               </NavLink>
             </nav>
 
-            {/* Language & Currency Controls in Sub-Header */}
             <div className="nav-sub-controls">
               
               {/* Language Selector */}
@@ -172,7 +185,7 @@ const Navbar = ({ onSearch }) => {
         </div>
       </header>
 
-      {/* Standalone Mobile Navigation Side Drawer */}
+      {/* Standalone Off-Canvas Mobile Navigation Side Drawer */}
       <div className={`mobile-menu-drawer ${mobileOpen ? 'open' : ''}`}>
         <div className="mobile-drawer-backdrop" onClick={() => setMobileOpen(false)}></div>
         <div className="mobile-drawer-content">
@@ -192,54 +205,147 @@ const Navbar = ({ onSearch }) => {
           </div>
 
           <div className="mobile-drawer-body">
+            {/* Search Trigger Button */}
             <button className="mobile-search-trigger-btn" onClick={() => { setMobileOpen(false); setSearchModalOpen(true); }}>
-              <i className="ri-search-line"></i> Search all products...
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+              <span>Search products & categories...</span>
             </button>
 
+            {/* VIP 50% OFF Coupon Button */}
             <button className="mobile-offer-btn" onClick={() => { setMobileOpen(false); setOfferModalOpen(true); }}>
-              <i className="ri-gift-fill text-warning"></i> VIP 50% OFF Coupon
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                <rect x="2" y="7" width="20" height="5"></rect>
+                <line x1="12" y1="22" x2="12" y2="7"></line>
+                <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+              </svg>
+              <span>VIP 50% OFF Coupon</span>
             </button>
 
+            {/* Mobile Navigation Links with Vector SVG Icons */}
             <nav className="mobile-nav-links">
               <NavLink to="/" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>
-                <i className="ri-home-4-line"></i> Home Page
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                  <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                </svg>
+                <span>Home Page</span>
               </NavLink>
+
               <NavLink to="/shop" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>
-                <i className="ri-store-2-line"></i> Shop Catalog
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                  <line x1="3" y1="6" x2="21" y2="6"></line>
+                  <path d="M16 10a4 4 0 0 1-8 0"></path>
+                </svg>
+                <span>Shop Catalog</span>
               </NavLink>
+
               <NavLink to="/profile" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>
-                <i className="ri-user-settings-line"></i> Profile & Orders ({ordersCount})
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>My Account & Orders ({ordersCount})</span>
               </NavLink>
+
               <NavLink to="/track" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>
-                <i className="ri-truck-line"></i> Track Order
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="1" y="3" width="15" height="13"></rect>
+                  <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                  <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                  <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                </svg>
+                <span>Track Order</span>
               </NavLink>
+
               <NavLink to="/contact" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>
-                <i className="ri-customer-service-2-line"></i> Support & FAQ
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                </svg>
+                <span>Support & FAQ</span>
               </NavLink>
+
               <NavLink to="/wishlist" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>
-                <i className="ri-heart-3-line"></i> Saved Wishlist ({wishlistCount})
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+                <span>Saved Wishlist ({wishlistCount})</span>
               </NavLink>
+
               <NavLink to="/cart" className="mobile-nav-link" onClick={() => setMobileOpen(false)}>
-                <i className="ri-shopping-bag-3-line"></i> Shopping Cart ({cartCount})
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="9" cy="21" r="1"></circle>
+                  <circle cx="20" cy="21" r="1"></circle>
+                  <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                </svg>
+                <span>Shopping Cart ({cartCount})</span>
               </NavLink>
             </nav>
 
+            {/* Mobile Settings Controls (Theme, Language, Currency) */}
             <div className="mobile-menu-settings">
+              
+              {/* Theme Toggle */}
               <div className="mobile-setting-row">
-                <span><i className="ri-global-line"></i> Language:</span>
+                <span className="mobile-setting-label">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                  </svg>
+                  Theme:
+                </span>
+                <div className="mobile-btn-group">
+                  <button className={`mobile-opt-btn ${theme==='dark'?'active':''}`} onClick={toggleTheme}>Dark</button>
+                  <button className={`mobile-opt-btn ${theme==='light'?'active':''}`} onClick={toggleTheme}>Light</button>
+                </div>
+              </div>
+
+              {/* Language Switcher */}
+              <div className="mobile-setting-row">
+                <span className="mobile-setting-label">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  </svg>
+                  Language:
+                </span>
                 <div className="mobile-btn-group">
                   <button className={`mobile-opt-btn ${lang==='en'?'active':''}`} onClick={() => changeLang('en')}>EN</button>
                   <button className={`mobile-opt-btn ${lang==='hi'?'active':''}`} onClick={() => changeLang('hi')}>HI</button>
                 </div>
               </div>
+
+              {/* Currency Switcher */}
               <div className="mobile-setting-row">
-                <span><i className="ri-money-dollar-circle-line"></i> Currency:</span>
+                <span className="mobile-setting-label">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                  </svg>
+                  Currency:
+                </span>
                 <div className="mobile-btn-group">
                   <button className={`mobile-opt-btn ${currency==='USD'?'active':''}`} onClick={() => changeCurrency('USD', '$')}>USD</button>
                   <button className={`mobile-opt-btn ${currency==='INR'?'active':''}`} onClick={() => changeCurrency('INR', '₹')}>INR</button>
                   <button className={`mobile-opt-btn ${currency==='EUR'?'active':''}`} onClick={() => changeCurrency('EUR', '€')}>EUR</button>
                 </div>
               </div>
+
             </div>
           </div>
         </div>
