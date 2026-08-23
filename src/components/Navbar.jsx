@@ -71,7 +71,7 @@ const Navbar = ({ onSearch }) => {
                 <i className={theme === 'dark' ? "ri-sun-line" : "ri-moon-line"}></i>
               </button>
 
-              {/* User Account / Profile */}
+              {/* User Account / Profile / Login */}
               {user ? (
                 <div className="dropdown-wrapper">
                   <div className="user-avatar-btn">
@@ -92,8 +92,9 @@ const Navbar = ({ onSearch }) => {
                   </div>
                 </div>
               ) : (
-                <Link to="/profile" className="util-btn icon-btn" title="Profile Dashboard">
-                  <i className="ri-user-3-line"></i>
+                <Link to="/login" className="util-btn login-nav-btn" title="Sign In to your Account">
+                  <i className="ri-user-3-fill"></i>
+                  <span className="login-btn-text">Sign In / Login</span>
                 </Link>
               )}
 
@@ -206,6 +207,30 @@ const Navbar = ({ onSearch }) => {
           </div>
 
           <div className="mobile-drawer-body">
+            
+            {/* User Profile Card / Login Actions in Mobile Drawer */}
+            {user ? (
+              <div className="mobile-user-card">
+                <img src={user.avatar} alt={user.name} className="mobile-user-avatar" />
+                <div className="mobile-user-info">
+                  <strong>{user.name}</strong>
+                  <small>{user.email}</small>
+                </div>
+                <button className="mobile-logout-icon-btn" onClick={() => { logout(); showToast('Logged out successfully', 'ri-logout-box-r-line'); setMobileOpen(false); }} title="Logout">
+                  <i className="ri-logout-box-r-line"></i>
+                </button>
+              </div>
+            ) : (
+              <div className="mobile-auth-actions-group">
+                <Link to="/login" className="mobile-auth-btn mobile-login-btn" onClick={() => setMobileOpen(false)}>
+                  <i className="ri-login-box-line"></i> Sign In / Login
+                </Link>
+                <Link to="/register" className="mobile-auth-btn mobile-register-btn" onClick={() => setMobileOpen(false)}>
+                  <i className="ri-user-add-line"></i> Register
+                </Link>
+              </div>
+            )}
+
             {/* Search Trigger Button */}
             <button className="mobile-search-trigger-btn" onClick={() => { setMobileOpen(false); setSearchModalOpen(true); }}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">

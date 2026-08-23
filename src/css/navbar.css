@@ -190,6 +190,24 @@
   color: var(--accent-primary);
 }
 
+.login-nav-btn {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-highlight);
+  color: var(--accent-primary) !important;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: var(--transition-fast);
+}
+
+.login-nav-btn:hover {
+  background: var(--grad-button);
+  color: #ffffff !important;
+  border-color: transparent;
+  box-shadow: var(--shadow-glow);
+}
+
 .icon-btn {
   padding: 6px 9px;
   font-size: 1.05rem;
@@ -868,6 +886,104 @@
   gap: 14px;
   flex: 1;
   overflow-y: auto;
+}
+
+/* Mobile Drawer User Card & Login Buttons */
+.mobile-user-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 12px;
+  border-radius: var(--radius-md);
+}
+
+.mobile-user-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent-primary);
+}
+
+.mobile-user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  overflow: hidden;
+}
+
+.mobile-user-info strong {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobile-user-info small {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mobile-logout-icon-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.mobile-logout-icon-btn:hover {
+  background: var(--accent-hot);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+.mobile-auth-actions-group {
+  display: flex;
+  gap: 8px;
+}
+
+.mobile-auth-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 8px;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-align: center;
+  transition: var(--transition-fast);
+}
+
+.mobile-login-btn {
+  background: var(--grad-button);
+  color: #ffffff !important;
+  box-shadow: var(--shadow-glow);
+}
+
+.mobile-register-btn {
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  color: var(--text-main) !important;
+}
+
+.mobile-register-btn:hover {
+  background: var(--bg-secondary);
+  border-color: var(--accent-primary);
 }
 
 .mobile-search-trigger-btn {
