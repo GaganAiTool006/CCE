@@ -92,6 +92,24 @@
   margin-bottom: 16px;
 }
 
+.hero-actions .btn-glass {
+  background: rgba(255, 255, 255, 0.18) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  color: #ffffff !important;
+  font-weight: 700;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  transition: var(--transition-fast);
+}
+
+.hero-actions .btn-glass:hover {
+  background: var(--accent-primary) !important;
+  color: var(--text-inverse) !important;
+  border-color: transparent !important;
+  box-shadow: var(--shadow-glow);
+}
+
 /* Ultra-Futuristic Glowing Flash Countdown HUD Bar */
 .flash-countdown {
   display: inline-flex;
