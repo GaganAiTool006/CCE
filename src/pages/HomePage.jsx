@@ -105,9 +105,11 @@ const HomePage = () => {
                   </Link>
                 </div>
 
-                {/* High-Tech Glowing Flash Countdown Clock */}
+                {/* Ultra-Futuristic Glowing Flash Countdown Clock */}
                 <div className="flash-countdown">
-                  <span className="countdown-label">FLASH SALE ENDS IN:</span>
+                  <span className="countdown-label">
+                    <i className="ri-flashlight-fill flash-pulse-icon"></i> FLASH SALE ENDS IN:
+                  </span>
                   <div className="timer-boxes-row">
                     <div className="timer-box">
                       <span>{String(countdown.hours).padStart(2, '0')}</span>
