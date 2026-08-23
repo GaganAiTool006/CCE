@@ -1,4 +1,4 @@
-/* NovaStore Master Stylesheet - Soft Pastel Sage Green & Mint Palette */
+/* NovaStore Master Stylesheet - Ultra-Soft Pastel Sage & Mint Palette */
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap');
 
 :root {
@@ -6,45 +6,45 @@
   --font-heading: 'Space Grotesk', 'Syne', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Master Dark Theme - Softer Sage Emerald & Deep Slate Night */
-  --bg-primary: #091e17;           /* Soft Deep Slate Emerald Background (Dark Mode) */
-  --bg-secondary: #0f2e24;         /* Subtle Dark Teal Cards */
-  --bg-card: rgba(15, 46, 36, 0.88);/* Glass Card Surface */
-  --bg-glass: rgba(52, 211, 153, 0.08); /* Soft Mint Tint Glass */
-  --border-color: rgba(52, 211, 153, 0.16); /* Softer Mint Borders */
+  /* Master Dark Theme - Softer Slate Emerald (Lightened Dark Theme) */
+  --bg-primary: #0b1a15;           /* Soft Slate Emerald Night */
+  --bg-secondary: #122821;         /* Subtle Soft Card Surface */
+  --bg-card: rgba(18, 40, 33, 0.92);/* Soft Glass Cards */
+  --bg-glass: rgba(52, 211, 153, 0.07); /* Light Mint Glass */
+  --border-color: rgba(52, 211, 153, 0.14); /* Subtle Soft Borders */
 
-  /* Primary Accent: Soft Soothing Sage Green & Muted Lime Gold */
+  /* Primary Accent: Soft Soothing Sage Green & Muted Gold */
   --accent-primary: #34d399;       /* Soft Mint Sage Green */
   --accent-secondary: #6ee7b7;     /* Light Pastel Mint */
   --accent-hover: #10b981;         /* Softer Emerald Hover */
   --accent-light-red: #a7f3d0;     /* Soft Mint Text Tint */
-  --accent-hot: #f43f5e;           /* Hot Rose Tag */
+  --accent-hot: #fb7185;           /* Soft Rose Tint (Non-harsh red) */
   --accent-success: #34d399;       /* Soft Success Green */
-  --accent-warning: #fbbf24;       /* Soft Muted Lime Gold */
+  --accent-warning: #fbbf24;       /* Soft Muted Gold */
 
-  --border-highlight: rgba(52, 211, 153, 0.4);
+  --border-highlight: rgba(52, 211, 153, 0.35);
   --bg-red-glass: rgba(52, 211, 153, 0.12);
 
-  /* Softer Gradients & Ambient Glow Shadows */
-  --grad-primary: linear-gradient(135deg, #059669 0%, #091e17 100%);
+  /* Subtle Soft Gradients & Non-Harsh Ambient Glow Shadows */
+  --grad-primary: linear-gradient(135deg, #059669 0%, #0b1a15 100%);
   --grad-button: linear-gradient(135deg, #10b981 0%, #059669 100%);
   --grad-hot: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-  --shadow-glow: 0 0 20px rgba(52, 211, 153, 0.28);
+  --shadow-glow: 0 0 16px rgba(52, 211, 153, 0.18);
 
   /* Dedicated Search Modal Colors */
   --search-accent-red: #34d399;
   --search-accent-red-hover: #10b981;
-  --search-red-glow: 0 0 22px rgba(52, 211, 153, 0.3);
+  --search-red-glow: 0 0 16px rgba(52, 211, 153, 0.2);
   --search-red-glass: rgba(52, 211, 153, 0.12);
-  --search-red-border: rgba(52, 211, 153, 0.4);
-  --search-modal-bg: #0f2e24;
-  --search-overlay-bg: rgba(9, 30, 23, 0.88);
+  --search-red-border: rgba(52, 211, 153, 0.35);
+  --search-modal-bg: #122821;
+  --search-overlay-bg: rgba(11, 26, 21, 0.85);
 
   --text-main: #f0fdf4;
   --text-muted: #a7f3d0;
-  --text-inverse: #091e17;
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
+  --text-inverse: #0b1a15;
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 8px 20px -4px rgba(0, 0, 0, 0.2);
   --backdrop-blur: blur(16px);
 
   --radius-sm: 8px;
@@ -56,25 +56,25 @@
 }
 
 [data-theme="light"] {
-  /* Light Mode Palette: Muted Pastel Mint Canvas (Soft on Eyes, non-harsh green!) */
-  --bg-primary: #edf7f2;         /* Soft Pastel Mint Canvas Background */
-  --bg-secondary: #ffffff;       /* Pure White Main Cards & Navbar */
-  --bg-card: #ffffff;            /* Crisp White Cards */
-  --bg-glass: #e6f4ea;           /* Light Pastel Mint Glass Active Inputs */
-  --border-color: #d1fae5;       /* Very Soft Mint Borders */
+  /* Light Mode Palette: Ultra-Soft Off-White Pastel Mint (Extremely soft on eyes!) */
+  --bg-primary: #f4fbf7;         /* Very Light Soft Pastel Off-White Canvas */
+  --bg-secondary: #ffffff;       /* Pure Crisp White Main Cards */
+  --bg-card: #ffffff;            /* Pure Crisp White Cards */
+  --bg-glass: #eaf6f0;           /* Soft Light Mint Glass Active Inputs */
+  --border-color: #e2f3ea;       /* Ultra Soft Subtle Borders */
   --border-highlight: #34d399;
 
-  --accent-primary: #059669;     /* Elegant Soft Forest Sage Green */
+  --accent-primary: #059669;     /* Elegant Soft Sage Green */
   --accent-secondary: #10b981;
   --accent-hover: #047857;
   --accent-warning: #f59e0b;     /* Muted Gold Badge */
 
   --grad-primary: linear-gradient(135deg, #059669 0%, #047857 100%);
   --grad-button: linear-gradient(135deg, #059669 0%, #10b981 100%);
-  --shadow-glow: 0 6px 18px rgba(5, 150, 105, 0.22);
+  --shadow-glow: 0 4px 14px rgba(5, 150, 105, 0.14);
 
-  --text-main: #064e3b;
-  --text-muted: #047857;
+  --text-main: #0f2e24;
+  --text-muted: #059669;
   --text-inverse: #ffffff;
 }
 
@@ -176,7 +176,7 @@ img {
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(16, 185, 129, 0.4);
+  box-shadow: 0 6px 16px rgba(16, 185, 129, 0.25);
 }
 
 .btn-secondary {
@@ -272,7 +272,7 @@ img {
 
 .social-links a:hover {
   background: var(--accent-primary);
-  color: #fff;
+  color: var(--text-inverse);
   border-color: transparent;
   transform: translateY(-2px);
   box-shadow: var(--shadow-glow);
