@@ -126,17 +126,24 @@
   flex-shrink: 0;
 }
 
-.mobile-top-search-btn, .mobile-top-cart-btn {
+.mobile-header-actions {
   display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobile-top-search-btn, .mobile-top-cart-btn {
   width: 36px;
   height: 36px;
   border-radius: var(--radius-sm);
   background: var(--bg-glass);
   border: 1px solid var(--border-color);
   color: var(--text-main);
+  display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  transition: var(--transition-fast);
 }
 
 .mobile-top-cart-btn .badge-count {
@@ -996,10 +1003,74 @@
 }
 
 @media (max-width: 768px) {
-  .navbar-bottom-tier { display: none; }
-  .mobile-toggle-btn { display: flex; }
-  .search-box-trigger { display: none; }
-  .mobile-top-search-btn, .mobile-top-cart-btn { display: flex; }
-  .util-btn span { display: none; }
-  .brand-logo span { font-size: 1.1rem; }
+  .navbar-top-tier {
+    padding: 10px 0;
+  }
+
+  .navbar-flex-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .navbar-bottom-tier {
+    display: none !important;
+  }
+  
+  .desktop-only-utilities {
+    display: none !important;
+  }
+
+  .search-box-trigger {
+    display: none !important;
+  }
+
+  .mobile-toggle-btn {
+    display: flex !important;
+  }
+
+  .mobile-header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .mobile-top-search-btn, .mobile-top-cart-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: var(--radius-sm) !important;
+    background: var(--bg-glass) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-main) !important;
+    transition: var(--transition-fast) !important;
+  }
+
+  .mobile-top-search-btn:hover, .mobile-top-cart-btn:hover {
+    background: var(--bg-secondary) !important;
+    border-color: var(--accent-primary) !important;
+    color: var(--accent-primary) !important;
+  }
+
+  .mobile-top-cart-btn {
+    background: var(--grad-button) !important;
+    color: #ffffff !important;
+    border: none !important;
+    box-shadow: var(--shadow-glow) !important;
+  }
+
+  .brand-logo {
+    font-size: 1.1rem !important;
+    gap: 6px !important;
+  }
+  
+  .logo-icon {
+    width: 30px !important;
+    height: 30px !important;
+    font-size: 1rem !important;
+  }
 }

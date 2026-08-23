@@ -57,14 +57,6 @@ const Navbar = ({ onSearch }) => {
               <span className="search-shortcut-badge">⌘K</span>
             </div>
 
-            {/* Mobile Search Icon Button (Mobile Top Bar) */}
-            <button className="mobile-top-search-btn" onClick={() => setSearchModalOpen(true)} title="Search Products">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-              </svg>
-            </button>
-
             {/* Desktop Action Utilities (Hidden on Mobile) */}
             <div className="nav-top-utilities desktop-only-utilities">
               
@@ -120,11 +112,20 @@ const Navbar = ({ onSearch }) => {
 
             </div>
 
-            {/* Mobile Top Cart Link */}
-            <Link to="/cart" className="mobile-top-cart-btn" title="Shopping Cart">
-              <i className="ri-shopping-bag-3-fill"></i>
-              <span className="badge-count">{cartCount}</span>
-            </Link>
+            {/* Mobile Header Actions (Visible on Mobile Only) */}
+            <div className="mobile-header-actions">
+              <button className="mobile-top-search-btn" onClick={() => setSearchModalOpen(true)} title="Search Products">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </button>
+
+              <Link to="/cart" className="mobile-top-cart-btn" title="Shopping Cart">
+                <i className="ri-shopping-bag-3-fill"></i>
+                <span className="badge-count">{cartCount}</span>
+              </Link>
+            </div>
 
           </div>
         </div>
