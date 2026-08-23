@@ -278,6 +278,40 @@
   color: var(--text-muted);
 }
 
+/* --- Section Headers (Flex vs Text-Center) --- */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.section-header.text-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.section-header.text-center h2 {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin: 6px 0 4px;
+}
+
+.section-header.text-center p {
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  max-width: 480px;
+}
+
 /* --- SLIDER 2 & 3: Clean Non-Distorted Horizontal Carousels --- */
 .category-slider-section, .products-slider-section {
   width: 100%;
@@ -1191,7 +1225,8 @@
     margin-bottom: 16px !important;
   }
 
-  .section-header {
+  /* Standard Slider Section Headers */
+  .section-header:not(.text-center) {
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
@@ -1199,7 +1234,7 @@
     margin-bottom: 10px !important;
   }
 
-  .section-header h2 {
+  .section-header:not(.text-center) h2 {
     font-size: 1.08rem !important;
     font-weight: 800 !important;
     line-height: 1.25 !important;
@@ -1207,10 +1242,44 @@
     margin-bottom: 2px !important;
   }
 
-  .section-header p {
+  .section-header:not(.text-center) p {
     font-size: 0.74rem !important;
     color: var(--text-muted) !important;
     line-height: 1.3 !important;
+  }
+
+  /* Centered Section Headers (e.g. Testimonials / Community Reviews Header) */
+  .section-header.text-center {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    width: 100% !important;
+    margin-bottom: 14px !important;
+  }
+
+  .section-header.text-center h2 {
+    font-size: 1.15rem !important;
+    font-weight: 800 !important;
+    text-align: center !important;
+    line-height: 1.25 !important;
+    color: var(--text-main) !important;
+    margin: 4px 0 2px !important;
+  }
+
+  .section-header.text-center p {
+    font-size: 0.76rem !important;
+    text-align: center !important;
+    color: var(--text-muted) !important;
+    line-height: 1.35 !important;
+    max-width: 300px !important;
+  }
+
+  .testimonials-header-badge {
+    font-size: 0.68rem !important;
+    padding: 3px 10px !important;
+    margin-bottom: 4px !important;
   }
 
   .slider-nav-btns button {
