@@ -30,12 +30,20 @@
   color: var(--text-main);
   background: var(--bg-glass);
   border: 1px solid var(--border-color);
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-sm);
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.mobile-toggle-btn:hover {
+  background: var(--bg-secondary);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
 }
 
 .brand-logo {
@@ -120,6 +128,21 @@
 
 .mobile-top-search-btn, .mobile-top-cart-btn {
   display: none;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.mobile-top-cart-btn .badge-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
 }
 
 .offer-nav-btn {
@@ -750,7 +773,7 @@
   100% { opacity: 1; }
 }
 
-/* Dynamic Light & Dark Theme Off-Canvas Mobile Drawer */
+/* --- Standalone Off-Canvas Mobile Navigation Side Drawer --- */
 .mobile-menu-drawer {
   position: fixed;
   inset: 0;
@@ -776,17 +799,19 @@
   transition: opacity 0.3s ease;
 }
 
-.mobile-menu-drawer.open .mobile-drawer-backdrop { opacity: 1; }
+.mobile-menu-drawer.open .mobile-drawer-backdrop {
+  opacity: 1;
+}
 
 .mobile-drawer-content {
   position: absolute;
   top: 0; left: 0; bottom: 0;
-  width: 84%;
-  max-width: 300px;
+  width: 85%;
+  max-width: 320px;
   height: 100vh;
   background: var(--bg-secondary) !important;
   color: var(--text-main) !important;
-  border-right: 1px solid var(--border-highlight);
+  border-right: 1px solid var(--border-color);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
@@ -810,8 +835,8 @@
 }
 
 .close-drawer-btn {
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
   background: var(--bg-glass);
   border: 1px solid var(--border-color);
@@ -820,22 +845,80 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: var(--transition-fast);
 }
 
-.mobile-drawer-nav {
+.close-drawer-btn:hover {
+  background: var(--accent-primary);
+  color: var(--text-inverse);
+  border-color: transparent;
+}
+
+.mobile-drawer-body {
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 14px;
+  flex: 1;
+  overflow-y: auto;
 }
 
-.mobile-nav-item {
+.mobile-search-trigger-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: var(--bg-glass);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  width: 100%;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.mobile-search-trigger-btn:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.mobile-offer-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: rgba(251, 191, 36, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.4);
+  color: #fbbf24;
+  font-size: 0.86rem;
+  font-weight: 800;
+  width: 100%;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.mobile-offer-btn:hover {
+  background: #fbbf24;
+  color: #0f172a;
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.mobile-nav-link {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 10px 14px;
   border-radius: var(--radius-md);
-  font-size: 0.92rem;
+  font-size: 0.9rem;
   font-weight: 700;
   color: var(--text-main) !important;
   background: var(--bg-glass);
@@ -843,44 +926,69 @@
   transition: var(--transition-fast);
 }
 
-.mobile-nav-item i {
-  font-size: 1.15rem;
+.mobile-nav-link svg {
   color: var(--accent-primary);
+  flex-shrink: 0;
+  transition: var(--transition-fast);
 }
 
-.mobile-nav-item:hover, .mobile-nav-item.active {
+.mobile-nav-link:hover, .mobile-nav-link.active {
   background: var(--grad-button);
   color: #ffffff !important;
   border-color: transparent;
+  box-shadow: var(--shadow-glow);
 }
 
-.mobile-nav-item:hover i, .mobile-nav-item.active i {
-  color: #ffffff !important;
+.mobile-nav-link:hover svg, .mobile-nav-link.active svg {
+  stroke: #ffffff !important;
 }
 
-.mobile-drawer-footer {
+.mobile-menu-settings {
   margin-top: auto;
-  padding: 16px;
+  padding-top: 14px;
   border-top: 1px solid var(--border-color);
-  background: var(--bg-card);
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.mobile-theme-toggle {
-  width: 100%;
-  padding: 10px;
-  border-radius: var(--radius-md);
-  background: var(--bg-glass);
-  border: 1px solid var(--border-color);
-  color: var(--text-main);
-  font-weight: 700;
-  font-size: 0.88rem;
+.mobile-setting-row {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 8px;
+}
+
+.mobile-setting-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.mobile-btn-group {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-glass);
+  padding: 3px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.mobile-opt-btn {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  transition: var(--transition-fast);
+}
+
+.mobile-opt-btn.active {
+  background: var(--accent-primary);
+  color: var(--text-inverse) !important;
 }
 
 @media (max-width: 1024px) {
